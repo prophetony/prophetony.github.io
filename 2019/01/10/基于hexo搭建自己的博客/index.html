@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Terence&#39;s blog">
 <meta property="og:description" content="很久之前就想创建自己的博客，在大学和研究生的时候都百度过Wordpress的用法，但Wordpress需要在国外租赁服务器，当时阿里云还没有发展起来。而且电脑要本地配置也会很麻烦，所以不了了之。最近看到朋友圈有一个朋友在分享自己的博客，又激起了自己搭建博客的想法。于是立马百度然后搭建。如果是第一次搭建，大概需要一个三个小时的时间，能够完成整个步骤。 下面将搭建过程一一记录下来，供朋友们参考。整个步">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-24T00:02:51.380Z">
+<meta property="og:updated_time" content="2019-01-24T00:04:53.166Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Hexo和GitHub搭建自己的博客">
 <meta name="twitter:description" content="很久之前就想创建自己的博客，在大学和研究生的时候都百度过Wordpress的用法，但Wordpress需要在国外租赁服务器，当时阿里云还没有发展起来。而且电脑要本地配置也会很麻烦，所以不了了之。最近看到朋友圈有一个朋友在分享自己的博客，又激起了自己搭建博客的想法。于是立马百度然后搭建。如果是第一次搭建，大概需要一个三个小时的时间，能够完成整个步骤。 下面将搭建过程一一记录下来，供朋友们参考。整个步">
@@ -387,7 +387,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-24 08:02:51" itemprop="dateModified" datetime="2019-01-24T08:02:51+08:00">2019-01-24</time>
+                <time title="Modified: 2019-01-24 08:04:53" itemprop="dateModified" datetime="2019-01-24T08:04:53+08:00">2019-01-24</time>
               
             
           </span>
@@ -513,8 +513,7 @@
 <p>更换新的主题，可能会有一些延迟，可以用clean来清除缓存。</p>
 <h2 id="通过站点配置文件来修改网站细节"><a href="#通过站点配置文件来修改网站细节" class="headerlink" title="通过站点配置文件来修改网站细节"></a>通过站点配置文件来修改网站细节</h2><p>需要修改的内容可以参考官方网站指的介绍<a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">官网</a>，里面对各个参数有一些详细的解释，我主要是修改了博客的标题、副标题、描述、语言等内容，其他非常偏技术的参数没有变化。</p>
 <p>这里我想说的是，一般你修改一项，重新部署网站一下，因为一旦出错，就比较容易找到原因。当然也可以把报错的详细信息去百度，如我修改的timezone就修改错了，导致报错“TypeError: Cannot read property ‘utcOffset’ of null”。后来将时区改为Asia/shanghai。</p>
-<h2 id="主题文件修改博客内容"><a href="#主题文件修改博客内容" class="headerlink" title="主题文件修改博客内容"></a>主题文件修改博客内容</h2><p>找到scheme文件夹下的配置文件：_config.yml，看一下里面的内容。修改整个主题，不需要的注释掉，这里我已经将默认的Muse注释掉，改为Pisces。然后将menu修改一下，默认只有首页和归档，现在添加标签和关于，只需要去掉前面的#。需要新建一个标签和关于页面<br><code>hexo new page Tags
-hexo  new page About</code></p>
+<h2 id="主题文件修改博客内容"><a href="#主题文件修改博客内容" class="headerlink" title="主题文件修改博客内容"></a>主题文件修改博客内容</h2><p>找到scheme文件夹下的配置文件：_config.yml，看一下里面的内容。修改整个主题，不需要的注释掉，这里我已经将默认的Muse注释掉，改为Pisces。然后将menu修改一下，默认只有首页和归档，现在添加标签和关于，只需要去掉前面的#。需要新建一个标签和关于页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page Tags</span><br><span class="line">hexo  new page About</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
