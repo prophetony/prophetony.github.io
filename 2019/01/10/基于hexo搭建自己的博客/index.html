@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Terence&#39;s blog">
 <meta property="og:description" content="很久之前就想创建自己的博客，在大学和研究生的时候都百度过Wordpress的用法，但Wordpress需要在国外租赁服务器，当时阿里云还没有发展起来。而且电脑要本地配置也会很麻烦，所以不了了之。最近看到朋友圈有一个朋友在分享自己的博客，又激起了自己搭建博客的想法。于是立马百度然后搭建。如果是第一次搭建，大概需要一个三个小时的时间，能够完成整个步骤。 下面将搭建过程一一记录下来，供朋友们参考。整个步">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-23T23:43:43.410Z">
+<meta property="og:updated_time" content="2019-01-24T00:02:51.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Hexo和GitHub搭建自己的博客">
 <meta name="twitter:description" content="很久之前就想创建自己的博客，在大学和研究生的时候都百度过Wordpress的用法，但Wordpress需要在国外租赁服务器，当时阿里云还没有发展起来。而且电脑要本地配置也会很麻烦，所以不了了之。最近看到朋友圈有一个朋友在分享自己的博客，又激起了自己搭建博客的想法。于是立马百度然后搭建。如果是第一次搭建，大概需要一个三个小时的时间，能够完成整个步骤。 下面将搭建过程一一记录下来，供朋友们参考。整个步">
@@ -387,7 +387,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-24 07:43:43" itemprop="dateModified" datetime="2019-01-24T07:43:43+08:00">2019-01-24</time>
+                <time title="Modified: 2019-01-24 08:02:51" itemprop="dateModified" datetime="2019-01-24T08:02:51+08:00">2019-01-24</time>
               
             
           </span>
@@ -508,6 +508,13 @@
 </ul>
 <p>然后文章可以发表到博客上去:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo -g</span><br><span class="line">Hexo -d</span><br></pre></td></tr></table></figure>
+<h1 id="5-主题配置"><a href="#5-主题配置" class="headerlink" title="5 主题配置"></a>5 主题配置</h1><h2 id="选主题"><a href="#选主题" class="headerlink" title="选主题"></a>选主题</h2><p>Hexo的官网里面有特别多的主题可以选择，我在这里选的是next这个主题（很多文章都推荐这个主题）。下载主题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
+<p>修改站点配置文件：_config.yml，将里面76行的theme由landscape修改为next。</p>
+<p>更换新的主题，可能会有一些延迟，可以用clean来清除缓存。</p>
+<h2 id="通过站点配置文件来修改网站细节"><a href="#通过站点配置文件来修改网站细节" class="headerlink" title="通过站点配置文件来修改网站细节"></a>通过站点配置文件来修改网站细节</h2><p>需要修改的内容可以参考官方网站指的介绍<a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">官网</a>，里面对各个参数有一些详细的解释，我主要是修改了博客的标题、副标题、描述、语言等内容，其他非常偏技术的参数没有变化。</p>
+<p>这里我想说的是，一般你修改一项，重新部署网站一下，因为一旦出错，就比较容易找到原因。当然也可以把报错的详细信息去百度，如我修改的timezone就修改错了，导致报错“TypeError: Cannot read property ‘utcOffset’ of null”。后来将时区改为Asia/shanghai。</p>
+<h2 id="主题文件修改博客内容"><a href="#主题文件修改博客内容" class="headerlink" title="主题文件修改博客内容"></a>主题文件修改博客内容</h2><p>找到scheme文件夹下的配置文件：_config.yml，看一下里面的内容。修改整个主题，不需要的注释掉，这里我已经将默认的Muse注释掉，改为Pisces。然后将menu修改一下，默认只有首页和归档，现在添加标签和关于，只需要去掉前面的#。需要新建一个标签和关于页面<br><code>hexo new page Tags
+hexo  new page About</code></p>
 
       
     </div>
@@ -681,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-搭建环境准备"><span class="nav-number">1.</span> <span class="nav-text">1.搭建环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-创建Github账号"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 创建Github账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-安装Git"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-安装Node-js"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 安装Node.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装和配置hexo"><span class="nav-number">2.</span> <span class="nav-text">2 安装和配置hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-将Hexo与Github-Page关联起来"><span class="nav-number">3.</span> <span class="nav-text">3 将Hexo与Github Page关联起来</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Deployment"><span class="nav-number">3.1.</span> <span class="nav-text">配置Deployment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Git个人信息"><span class="nav-number">3.2.</span> <span class="nav-text">配置Git个人信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">3.3.</span> <span class="nav-text">绑定域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4写博客发布文章"><span class="nav-number">4.</span> <span class="nav-text">4写博客发布文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-搭建环境准备"><span class="nav-number">1.</span> <span class="nav-text">1.搭建环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-创建Github账号"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 创建Github账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-安装Git"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-安装Node-js"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 安装Node.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装和配置hexo"><span class="nav-number">2.</span> <span class="nav-text">2 安装和配置hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-将Hexo与Github-Page关联起来"><span class="nav-number">3.</span> <span class="nav-text">3 将Hexo与Github Page关联起来</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Deployment"><span class="nav-number">3.1.</span> <span class="nav-text">配置Deployment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Git个人信息"><span class="nav-number">3.2.</span> <span class="nav-text">配置Git个人信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">3.3.</span> <span class="nav-text">绑定域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4写博客发布文章"><span class="nav-number">4.</span> <span class="nav-text">4写博客发布文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-主题配置"><span class="nav-number">5.</span> <span class="nav-text">5 主题配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选主题"><span class="nav-number">5.1.</span> <span class="nav-text">选主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过站点配置文件来修改网站细节"><span class="nav-number">5.2.</span> <span class="nav-text">通过站点配置文件来修改网站细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题文件修改博客内容"><span class="nav-number">5.3.</span> <span class="nav-text">主题文件修改博客内容</span></a></li></ol></li></ol></div>
             
 
           </div>
