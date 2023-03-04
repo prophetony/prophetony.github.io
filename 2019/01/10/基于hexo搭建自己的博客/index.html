@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"terence.top","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="很久之前就想创建自己的博客，在大学和研究生的时候都百度过Wordpress的用法，但Wordpress需要在国外租赁服务器，当时阿里云还没有发展起来。而且电脑要本地配置也会很麻烦，所以不了了之。最近看到朋友圈有一个朋友在分享自己的博客，又激起了自己搭建博客的想法。于是立马百度然后搭建。如果是第一次搭建，大概需要一个三个小时的时间，能够完成整个步骤。 下面将搭建过程一一记录下来，供朋友们参考。&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Hexo和GitHub搭建自己的博客">
+<meta property="og:url" content="https://terence.top/2019/01/10/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="Terence&#39;s Blog">
+<meta property="og:description" content="很久之前就想创建自己的博客，在大学和研究生的时候都百度过Wordpress的用法，但Wordpress需要在国外租赁服务器，当时阿里云还没有发展起来。而且电脑要本地配置也会很麻烦，所以不了了之。最近看到朋友圈有一个朋友在分享自己的博客，又激起了自己搭建博客的想法。于是立马百度然后搭建。如果是第一次搭建，大概需要一个三个小时的时间，能够完成整个步骤。 下面将搭建过程一一记录下来，供朋友们参考。&amp;lt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2019-01-24T08:13:36.000Z">
+<meta property="article:author" content="Terence Qi">
+<meta property="article:tag" content="自我提升">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://terence.top/2019/01/10/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基于Hexo和GitHub搭建自己的博客 | Terence's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Terence's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">渺小个体的数字花园</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://terence.top/2019/01/10/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terence Qi">
+      <meta itemprop="description" content="记录日常所思所感，通过分享产生价值">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terence's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于Hexo和GitHub搭建自己的博客
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-10T00:00:00+08:00">2019-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-01-24 16:13:36" itemprop="dateModified" datetime="2019-01-24T16:13:36+08:00">2019-01-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>很久之前就想创建自己的博客，在大学和研究生的时候都百度过Wordpress的用法，但Wordpress需要在国外租赁服务器，当时阿里云还没有发展起来。而且电脑要本地配置也会很麻烦，所以不了了之。<br>最近看到朋友圈有一个朋友在分享自己的博客，又激起了自己搭建博客的想法。于是立马百度然后搭建。如果是第一次搭建，大概需要一个三个小时的时间，能够完成整个步骤。</p>
+<p>下面将搭建过程一一记录下来，供朋友们参考。<br>&lt;! - - more - -&gt;</p>
+<p>整个步骤如下：</p>
+<ol>
+<li>搭建环境准备（包括GitHub账户开立、Git环境和node.js环境安装配置）</li>
+<li>安装和配置hexo</li>
+<li>将hexo和GitHub page关联</li>
+<li>发布文章测试</li>
+<li>主题配置</li>
+</ol>
+<p>我在window环境和MAC环境下都安装了，因此下面的介绍会讲到两种环境下如何安装。大体步骤是一样的。</p>
+<h1 id="搭建环境准备"><a href="#搭建环境准备" class="headerlink" title="搭建环境准备"></a>搭建环境准备</h1><p>第一步主要是在电脑上安装git和node.js。</p>
+<h2 id="创建Github账号"><a href="#创建Github账号" class="headerlink" title="创建Github账号"></a>创建Github账号</h2><p>GitHub是一个面向开源及私有软件项目的托管平台，是开源代码库以及版本控制系统，拥有超过900万开发者用户。目前很多的开发人员、数据分析人员等都用这个平台进行相互交流，共享代码资源。</p>
+<p>登陆GitHub。如果还没有GitHub账号，使用邮箱地址注册一个（需要通过邮件确认注册，否则无法使用gh-pages!）。注册完成后登录点击页面右上角的加号，选择New Repository，进入代码库创建页面，创建一个新的代码仓库，仓库名（Repository name）设置为：username.github.io,这里的username需要使用你的GitHub账号名称，这是固定的写法。这一点非常关键和重要，必须严格按照格式要求命名。如我的账号设置为：</p>
+<blockquote>
+<p>prophetony.github.io</p>
+</blockquote>
+<p>Despcription下可以简单填写一下描述，不写也没关系。选择Public。正确创建之后，点击界面右侧的settings，会打开这个库的设置界面，向下拖动，直到看见了GitHub Pages ,点击Launch automatic page generator.在Source栏的选项中，默认状态是选择的None，通过下拉菜单可以选择master branch，点击save，如果没有没有问题，大概15分钟以后，GitHub就会自动创建一个gh-pages的页面，就可以访问username.github.io的页面了。</p>
+<p>在这个页面的下方，有一个主题选择的选项，可以设置博客的主题。这里的主题是GitHub提供的几种默认的主题，如果你觉得可以满足你的需求了，那你的博客已经基本完成了。如果你需要再个性化一点，那继续下面的步骤。</p>
+<p>如果提示说pages当前无法使用，需要向库里添加内容之后才可以，那你需要先创建一个master branch，然后往库里随便放些内容。</p>
+<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>Git是一个分布式版本控制系统（据说是目前最先进的），主要是解决同一个文档，多次修改之后的版本管理问题，最早是Linux系统的创始人Linus编写，用于管理Linux的代码的。后来GitHub上线。</p>
+<p>msysgit是Windows版本的Git，可以直接从官网下载，但是从尝试了不同的网络、不同的电脑，都因为网速过慢而下载失败（其实是被墙了），建议直接百度从一些第三方网站下载。安装过程比较简单，按照默认安装操作即可 。安装完成后，在开始菜单里找到Git和Git Bash会出现一个类似命令窗口的窗口，说明安装成功了。想详细了解Git的同学可以浏览廖雪峰的博客。</p>
+<p>安装完成后，需要将本地的Git与GitHub账号绑定，点击Git bash，设置username和email信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git confit --global user.name &quot;github的账户名称&quot;</span><br><span class="line">git confit --global user.email &quot;github的注册邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+<p>然后同样是在Git Bash窗口中，生成密钥。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C&quot;github的注册邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+<p>连续按三个回车，中间不用管屏幕上的提示，最后会在系统的默认文件夹(&#x2F;c&#x2F;Users&#x2F;Administrator&#x2F;.ssh)下得到两个文件，id_rsa和id_rsa.pub.<br>下一步需要在GitHub上添加SSH公钥：<br>打开id_rsa.pub，复制全文，<br>浏览器输入地址：<a target="_blank" rel="noopener" href="https://github.com/settings/keys%EF%BC%8C%E7%82%B9%E5%87%BBNew">https://github.com/settings/keys，点击New</a> SSH key，把复制的key粘贴进入。title可以随意起。设置完后在Git Bash中查看GitHub的公钥是否设置成功。输入ssh <a href="mailto:&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>进行设置。</p>
+<p>设置GitHub密钥的原因是，GitHub要求每次推送代码时，输入账号和密码以验证推送用户是否为合法用户。为了省去每次输入密码的步骤，采用了SSH ，每次推送时，git会匹配本地电脑上的私钥跟GitHub中的公钥是否配对。</p>
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>Node.js是运行在服务端的JavaScript。安装选择官网地址即可，选择适合你电脑的版本。一路选择默认安装，勾选全部组件。安装完成后，在Windows环境下，打开cmd窗口，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<p>如果安装正常，会出现版本号。输入node可进入node.js的交互环境，连续输入两次Ctrl+C可以退出。<br>在cmd窗口，输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p>如果安装正常，会出现版本号。可以进行下一步了。如果不正确，则回头检查自己的安装过程。</p>
+<p>为什么要检查git和node的版本号？如果本地电脑安装的版本过低，在生成hexo的时候，系统会报错，提示版本过低。这时需要升级到最新版本。</p>
+<p>以上是window下的安装过程。在mac OS环境中，直接打开终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<p>如果电脑中已经安装了git和node，则会显示版本号。如果没有显示版本号，则表示系统里还没有安装，按照提示的说明安装即可。安装过程相对于window来讲比较简单。</p>
+<h1 id="安装和配置hexo"><a href="#安装和配置hexo" class="headerlink" title="安装和配置hexo"></a>安装和配置hexo</h1><p>Hexo是我们的个人博客网站的框架。需要在本地电脑中创建一个文件夹，用于存放Hexo框架以及以后要发布的网页。 创建好文件夹后，进入文件夹，目前是空白的。</p>
+<p>window下自己找一个合适的地方创建一个文件夹，比如命名为blog，然后在命令行窗口通过cd进入该目录。</p>
+<p>在mac下，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure>
+<p>进入该目录后，在命令行中输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>这个安装涉及到向系统根目录写入文件，因此需要使用sudo获取授权。<br>此外，在mac上我即使用了sudo多次安装也失败了，最后百度了一下原因，使用了以下代码才安装成功的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install --unsafe-perm --verbose -g hexo</span><br></pre></td></tr></table></figure>
+<p>安装时间会稍长，命令行中会有一个小光标在转动，暗示你系统不是死机了。<br>在安装完成后，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>可以查看hexo版本号，如果显示正常，则说明安装成功了。<br>然后输入以下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">hexo save</span><br></pre></td></tr></table></figure>
+<p>初始化目录，并开启本地化服务。然后输入:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install </span><br></pre></td></tr></table></figure>
+<p>自动安装依赖包，即所有所需要的组件。只需要等待npm操作即可。</p>
+<p>输入:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>会出现提示信息，可以本地访问博客系统，在浏览器输入<a target="_blank" rel="noopener" href="http://localhost:4000/%E8%BF%99%E4%B8%AA%E7%BD%91%E5%9D%80%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E4%BA%86%E3%80%82">http://localhost:4000/这个网址，就可以看到博客首页了。</a></p>
+<p>至此，hexo完成本地安装和配置。</p>
+<h1 id="将Hexo与Github-Page关联起来"><a href="#将Hexo与Github-Page关联起来" class="headerlink" title="将Hexo与Github Page关联起来"></a>将Hexo与Github Page关联起来</h1><p>在第一步的时候，我们已经将仓库创建好了，这里就需要用到了。<br>在hexoblog根目录中,_config.yml是站点配置文件，在根目录的themes文件中，也有一个_config.yml文件，称为主题配置文件。<br>下一步是将Hexo与GitHub关联起来。</p>
+<h2 id="配置Deployment"><a href="#配置Deployment" class="headerlink" title="配置Deployment"></a>配置Deployment</h2><p>打开站点配置文件，在文档最后的地方，找到Deployment，在后面修改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo：http://github.com/prophetony/prophetony.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>注意两点：</p>
+<ul>
+<li>type 是git，</li>
+<li>repo地址最后面添加git，前面的地址是在GitHub上创建的仓库地址，而不是网站的地址。文档修改无误后保存。</li>
+</ul>
+<p>最后安装Git部署插件(不然会提示说deployer not found:git)，输入命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>这个时候，通过浏览器就可以访问prophetony.github.io了。</p>
+<h2 id="配置Git个人信息"><a href="#配置Git个人信息" class="headerlink" title="配置Git个人信息"></a>配置Git个人信息</h2><p>为了避免每一次部署都需要输入密码，我们可以生成秘钥，然后提交到GitHub，进行关联。如果是第一次，需要设置git的user name和email：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config —-global user.name “prophetony”</span><br><span class="line">git config —-global user.email “xiaoqitao125@sina.com”</span><br></pre></td></tr></table></figure>
+<p>生成密钥：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C”xiaoqitao125@sina.com”</span><br></pre></td></tr></table></figure>
+<p>注意提示信息，要输入一个文件名能够把生成的公钥给存储下来。进入github（前面提到的代码库）找到”setting设置“，然后点击”SSH and GPG keys“，创建新的SSH，将之前复制的公钥黏贴进输入框，提交就OK。</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>我们建好的网站是托管在GitHub上的，所以网站的后缀是github.io。如果想使用个性化的域名，就需要绑定我们自己的域名。<br>这里会有两个步骤。首先购买属于自己的域名。我是在阿里云注册了一个域名，2017年花了9元人民币，使用一年。(目前阿里在做活动，还有一元注册的)。2018年再续费时就变成了80块钱（阿里真赚钱）。<br>可以登陆阿里云官网或者APP，注册一个账号，然后进入域名注册的界面，可以输入自己想要的域名，如果是还没有人注册的（有显示价格的），你就可以付钱买下来。我买的是qitao.tech。<br>第二步是将域名与GitHub地址绑定。进入阿里云的管理控制台，找到域名列表，选择“解析”，然后添加解析，包括了两条解析记录，第一条是根据IP地址（可以通过ping你的GitHub.io的地址获得IP地址），第二个是通过域名。<br>上述设置完后，登陆GitHub，进入创建的仓库，进入settings页面，在设置主题的下方有一个设置custom domin，将域名输入保存。</p>
+<p>上述操作完成后，进入本地电脑的博客文件中，在source文件夹下，创建一个记事本文件，输入域名（我输入的是qitao.tech,建议不要带www），将文件另存为，命名为CNAME,格式为“所有文件”。这样的好处是每次博客更新时，都能用你指定的域名，不会再置空了。</p>
+<p>完成之后，进入本地博客文件的目录，按住shift右键打开cmd终端，依次输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>此时，在浏览器输入你的个性化域名，就能跳转到GitHub搭建的网站了。</p>
+<h1 id="写博客发布文章"><a href="#写博客发布文章" class="headerlink" title="写博客发布文章"></a>写博客发布文章</h1><p>新建一篇博客:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post “welcome to my world”</span><br></pre></td></tr></table></figure>
+<p>证明创建文章成功，“welcome to my world”这个md文件会创建在source&#x2F;_posts&#x2F;的文件下。该md文件在自动生成时会带有一些属性：</p>
+<ul>
+<li>title: 定义了博文的标题</li>
+<li>date: 定义了创作博文的时间</li>
+<li>tags: 定义了博文的标签</li>
+<li>除了这个三个属性以外我们还可以扩展一些属性：</li>
+<li>update: 定义了最后修改的时间</li>
+<li>comments：定义能否评论此博文(默认为true)</li>
+<li>categories: 定义了博文的种类</li>
+</ul>
+<p>然后文章可以发表到博客上去:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo -g</span><br><span class="line">Hexo -d</span><br></pre></td></tr></table></figure>
+<h1 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h1><h2 id="选主题"><a href="#选主题" class="headerlink" title="选主题"></a>选主题</h2><p>Hexo的官网里面有特别多的主题可以选择，我在这里选的是next这个主题（很多文章都推荐这个主题）。下载主题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>修改站点配置文件：_config.yml，将里面76行的theme由landscape修改为next。</p>
+<p>更换新的主题，可能会有一些延迟，可以用clean来清除缓存。</p>
+<h2 id="通过站点配置文件来修改网站细节"><a href="#通过站点配置文件来修改网站细节" class="headerlink" title="通过站点配置文件来修改网站细节"></a>通过站点配置文件来修改网站细节</h2><p>需要修改的内容可以参考官方网站指的介绍<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">官网</a>，里面对各个参数有一些详细的解释，我主要是修改了博客的标题、副标题、描述、语言等内容，其他非常偏技术的参数没有变化。</p>
+<p>这里我想说的是，一般你修改一项，重新部署网站一下，因为一旦出错，就比较容易找到原因。当然也可以把报错的详细信息去百度，如我修改的timezone就修改错了，导致报错“TypeError: Cannot read property ‘utcOffset’ of null”。后来将时区改为Asia&#x2F;shanghai。</p>
+<h2 id="主题文件修改博客内容"><a href="#主题文件修改博客内容" class="headerlink" title="主题文件修改博客内容"></a>主题文件修改博客内容</h2><p>找到scheme文件夹下的配置文件：_config.yml，看一下里面的内容。修改整个主题，不需要的注释掉，这里我已经将默认的Muse注释掉，改为Pisces。然后将menu修改一下，默认只有首页和归档，现在添加标签和关于，只需要去掉前面的#。需要新建一个标签和关于页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page Tags</span><br><span class="line">hexo  new page About</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/" rel="tag"># 自我提升</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/14/2019%E7%AC%AC1%E7%AF%87%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E3%80%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E9%83%BD%E6%98%AF%E6%97%B6%E9%97%B4%E6%8E%A7%E3%80%8B/" rel="next" title="2019第1篇读书笔记：《为什么精英都是时间控》">
+      2019第1篇读书笔记：《为什么精英都是时间控》 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">搭建环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAGithub%E8%B4%A6%E5%8F%B7"><span class="nav-number">1.1.</span> <span class="nav-text">创建Github账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">1.2.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Node-js"><span class="nav-number">1.3.</span> <span class="nav-text">安装Node.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEhexo"><span class="nav-number">2.</span> <span class="nav-text">安装和配置hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86Hexo%E4%B8%8EGithub-Page%E5%85%B3%E8%81%94%E8%B5%B7%E6%9D%A5"><span class="nav-number">3.</span> <span class="nav-text">将Hexo与Github Page关联起来</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEDeployment"><span class="nav-number">3.1.</span> <span class="nav-text">配置Deployment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEGit%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF"><span class="nav-number">3.2.</span> <span class="nav-text">配置Git个人信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="nav-number">3.3.</span> <span class="nav-text">绑定域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0"><span class="nav-number">4.</span> <span class="nav-text">写博客发布文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">主题配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E4%B8%BB%E9%A2%98"><span class="nav-number">5.1.</span> <span class="nav-text">选主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%A5%E4%BF%AE%E6%94%B9%E7%BD%91%E7%AB%99%E7%BB%86%E8%8A%82"><span class="nav-number">5.2.</span> <span class="nav-text">通过站点配置文件来修改网站细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9"><span class="nav-number">5.3.</span> <span class="nav-text">主题文件修改博客内容</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Terence Qi</p>
+  <div class="site-description" itemprop="description">记录日常所思所感，通过分享产生价值</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Terence Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
